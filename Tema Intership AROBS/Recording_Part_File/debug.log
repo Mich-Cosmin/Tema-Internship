@@ -1,0 +1,13 @@
+2023-09-27 19:04:09,935 - DEBUG - Starting new HTTPS connection (1): google.com:443
+2023-09-27 19:04:10,135 - DEBUG - https://google.com:443 "GET / HTTP/1.1" 301 220
+2023-09-27 19:04:10,135 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
+2023-09-27 19:04:10,367 - DEBUG - https://www.google.com:443 "GET / HTTP/1.1" 200 None
+2023-09-27 19:04:11,438 - INFO - Application started.
+2023-09-27 19:04:11,438 - INFO - Opening the youtube page
+2023-09-27 19:04:11,438 - DEBUG - Starting new HTTPS connection (1): www.youtube.com:443
+2023-09-27 19:04:11,617 - DEBUG - https://www.youtube.com:443 "GET /results?q=https://www.youtube.com/watch?v=LHvYrn3FAgI HTTP/1.1" 200 None
+2023-09-27 19:04:12,573 - INFO - The page was opened with success
+2023-09-27 19:04:19,656 - INFO - Recording audio...
+2023-09-27 19:04:20,337 - INFO - Recording screen...
+2023-09-27 19:05:02,785 - INFO - Finished recording screen.
+2023-09-27 19:05:03,070 - INFO - Finished recording audio.

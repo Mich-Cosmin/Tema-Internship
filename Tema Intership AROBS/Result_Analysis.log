@@ -1,0 +1,6 @@
+2023-09-28 00:33:56,252 - INFO - Starting SPL calculation.
+2023-09-28 00:33:56,689 - INFO - SPL calculation completed successfully.
+2023-09-28 00:33:56,689 - INFO - Starting audio analysis.
+2023-09-28 00:33:57,623 - INFO - The original sound was plotted and saved.
+2023-09-28 00:33:59,145 - INFO - The Amplitude vs Frequency (Hz) was plotted and saved.
+2023-09-28 00:33:59,972 - INFO - The Spectrogram was plotted and saved.
