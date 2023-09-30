@@ -35,7 +35,10 @@ def open_a_page_youtube():
     except Exception as e:
         l.logging.error(f'ERROR: The page could not opened: {e}')
         print(f'ERROR: The page could not opened: {e}')
-        sys.exit(1)  # Exit the program with a non-zero status code to indicate an error
+        #"exit(1)" It exits the current Python script or program with a status code of 1. The status code is
+                 #an integer value. A status code of 0 usually indicates successful execution, while
+                 # non-zero status codes (like 1) are used to indicate errors or abnormal terminations.
+        sys.exit(1)  #Ruleaza mai departe. Te avetizeaza cu: "Exception has Occured"
 #=====================================================================================
 
 
