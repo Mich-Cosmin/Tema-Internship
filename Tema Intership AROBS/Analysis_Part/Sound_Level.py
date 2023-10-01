@@ -17,13 +17,16 @@ def calculate_spl(audio_file, output_file, window_size=0.01, overlap=0.5, refere
         :param audio_file: Path to the audio file.
         :param output_file: Path to the output CSV file.
         :param window_size: Size of the analysis window in seconds. Default is 0.01 seconds.
-        :param overlap(suprapune): Overlap between successive windows as a fraction of the window size. Default is 0.5 (50% overlap).
+        :param overlap(suprapune): Overlap between successive windows as a fraction of the window size. 
+                                    Default is 0.5 (50% overlap).
         :param reference_pressure: Reference sound pressure in pascals (Pa). Default is 20e-6 Pa.
         """
         l.logging.info("Starting SPL calculation.")
 
         # Read the audio file using soundfile to handle various formats
         audio, sample_rate = sf.read(audio_file)
+        #print('SPL Sampling Rate:',audio)                      #48000
+        #print('SPL Audio Shape:',np.shape(sample_rate))        #1440000
         
         # Calculate the number of samples in the analysis window
         window_samples = int(window_size * sample_rate)
@@ -31,7 +34,7 @@ def calculate_spl(audio_file, output_file, window_size=0.01, overlap=0.5, refere
         # Calculate the number of overlapping samples (esntioane suprapuse)
         #este o tehnică folosită pentru a îmbunătăți calitatea și precizia analizei semnalelor,
         #prin atenuarea tranzițiilor între segmente, conservarea informației și îmbunătățirea rezoluției. 
-        overlap_samples = int(overlap * window_samples)
+        overlap_samples = int(overlap * window_samples)   #220
         
         # Initialize lists to store SPL values and time indices
         spl_values = []
@@ -39,10 +42,10 @@ def calculate_spl(audio_file, output_file, window_size=0.01, overlap=0.5, refere
         
         # Iterate through the audio signal with overlapping windows
         start = 0
-        while start < len(audio):
-            end = start + window_samples
+        while start < len(audio):               #len(audio) = 1321984
+            end = start + window_samples        #0+441; 221+441=662
             if end > len(audio):
-                end = len(audio)
+                end = len(audio)   #1321984, final
             
             # Extract the current window of audio
             window = audio[start:end]
@@ -58,11 +61,13 @@ def calculate_spl(audio_file, output_file, window_size=0.01, overlap=0.5, refere
             spl = 20 * math.log10(rms / reference_pressure)
             
             # Append(adauga) SPL value and time index to lists
-            spl_values.append(spl)
+            spl_values.append(spl)                      #val calc o pun in vector la final
             time_indices.append(start / sample_rate)
             
             # Move to the next window with overlap
-            start += window_samples - overlap_samples
+            #window_samples=441
+            #overlap_samples=220
+            start += window_samples - overlap_samples   #pasul, 0; 441-220=221; 442; 663
         
         # Plot the SPL over time
         plt.figure(figsize=(12, 6))

@@ -11,24 +11,23 @@ def calc_audio_analysis(audio_file):
     try:
         l.logging.info("Starting audio analysis.")
         
-        # Check if the audio file exists
-        #Import the .wav audio
+        # Check if the audio file exists, Import the .wav audio
         s,a = wavfile.read(audio_file)
         #s = sampling (int) / esantionare
              #Rata de eșantionare reprezintă numărul de eșantioane luate pe secundă din semnalul audio. 
              #Aceasta este importantă pentru a interpreta corect semnalul audio în timp.
         #a = audio signal (numpy array)
              #Această variabilă primește semnalul audio sub formă de numpy array. Semnalul audio constă într-o 
-             #secvență de valori numerice care reprezintă amplitudinea semnalului la fiecare eșantion. În acest array, 
-             #fiecare element corespunde unui eșantion de timp din semnal.
+             #secvență de valori numerice care reprezintă amplitudinea semnalului la fiecare eșantion. 
+             #În acest array, fiecare element corespunde unui eșantion de timp din semnal.
         print('Sampling Rate:',s)               #48000
-        print('Audio Shape:',np.shape(a))       #1440000
+        print('Audio Shape:',np.shape(a))       #1439744
 
         # ==================== display Original Sound ======================
         #Display the magnitude of the sound
         #number of samples, atribui variabilei na valoarea numărului de elemente din primua linie
-        na = a.shape[0]
-        #print('na = ',na)       #1440000
+        na = a.shape[0]          
+        #print('na = ',na)       #1439744
         #audio time duration
         la = na / s   
         #print('la = ',la)       #30.0
@@ -44,7 +43,7 @@ def calc_audio_analysis(audio_file):
 
         # ==================== Frequency Analysis ======================
         #Fast Fourier Transform (FFT), analyze entire audio clip
-        na = len(a)
+        na = len(a)         #1321984
         
         #FFT asupra semnalului audio 
         #Then selects the first half of the FFT results (0 to na/2) because the FFT of real-valued signals 
@@ -70,7 +69,7 @@ def calc_audio_analysis(audio_file):
         fig,ax = plt.subplots()
         plt.plot(f,Pxx,'b-',label='Audio Signal')
 
-        #zona in care urechea aude sunetul
+        #***************** Subplot zona in care urechea aude sunetul ****************************
         #[20, 20000] -Hz represents the x-values, indicating the frequency range.
         #[0.1, 0.1] represents the y-values, create a horizontal line at a constant value of 0.1 on the y-axis.
         #alpha=0.7 sets the transparency of the line to 0.7 (making it somewhat transparent).
@@ -84,6 +83,7 @@ def calc_audio_analysis(audio_file):
         plt.savefig('Amp_vs_Freq.png')
         #plt.show()
         l.logging.info("The Amplitude vs Frequency (Hz) was plotted and saved.")
+
 
         #===================== Spectrogram =========================
         #fr: An array of frequencies.

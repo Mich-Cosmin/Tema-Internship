@@ -2,6 +2,7 @@
 import Recording_Part.fisier_logging as l
 import pyaudio
 
+
 def list_audio_input_sources():
     #"pyaudio.PyAudio()" -> creează o instanță a clasei PyAudio din modulul pyaudio. Această instanță 
     #este folosită pentru a accesa funcționalitatea oferită de PyAudio, este o bibliotecă Python 
@@ -30,7 +31,7 @@ def list_audio_input_sources():
     except Exception as e:
         print(f"Error getting device count: {e}")
         l.logging.error(f"Error getting device count: {e}")
-        p.terminate()
+        p.terminate()   #close the PyAudio instance represented
         return
 
     print("Available audio input sources:")
@@ -42,22 +43,17 @@ def list_audio_input_sources():
             l.logging.error(f"Error getting device info for Device {i}: {e}")
             continue
 
-        #"device_info": This is a dictionary that contains information about a specific audio input or output
-                #device. This information was retrieved using p.get_device_info_by_host_api_device_index(0, i)
+        #"device_info": This is a dictionary that contains information about audio input or output device.
+                # This information was retrieved using p.get_device_info_by_host_api_device_index(0, i)
         #"get('maxInputChannels')": This is a method used to access a specific property of the device_info 
                 #dictionary. It retrieves the value associated with the key 'maxInputChannels'. This key 
                 #typically stores the maximum number of input (recording) 
-        #"if device_info.get('maxInputChannels') > 0":: This is an if statement that checks if the value 
-                #associated with 'maxInputChannels' is greater than 0.
+        #"if device_info.get('maxInputChannels')>0": checks if the value 'maxInputChannels' is greater than 0
                 #it checks if the audio input device supports at least one input channel.
-
         if device_info.get('maxInputChannels') > 0:
-            try:
-                print(f"Device {i}: {device_info['name']}")
-                l.logging.info(f"Device {i}: {device_info['name']}")
-            except Exception as e:
-                print(f"Error printing device info: {e}")
-                l.logging.error(f"Error printing device info: {e}")
+            print(f"    Device {i}: {device_info['name']}")
+            l.logging.info(f"    Device {i}: {device_info['name']}")
+            
 
     try:
         p.terminate()   #close the PyAudio instance
@@ -65,13 +61,3 @@ def list_audio_input_sources():
         print(f"Error terminating PyAudio: {e}")
         l.logging.error(f"Error terminating PyAudio: {e}")
 
-
-'''
-def main():
-    list_audio_input_sources()
-
-
-if __name__ == "__main__":
-    main()
-
-'''

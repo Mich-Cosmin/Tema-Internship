@@ -25,6 +25,7 @@ def open_a_page_youtube():
         print("The page was opened with success")
         l.logging.info('The page was opened with success')
         time.sleep(7)
+        
     
     #If a TimeoutException occurs if the web page loading takes too long    
     except TimeoutException as timeout_exception:
@@ -38,7 +39,7 @@ def open_a_page_youtube():
         #"exit(1)" It exits the current Python script or program with a status code of 1. The status code is
                  #an integer value. A status code of 0 usually indicates successful execution, while
                  # non-zero status codes (like 1) are used to indicate errors or abnormal terminations.
-        sys.exit(1)  #Ruleaza mai departe. Te avetizeaza cu: "Exception has Occured"
+        sys.exit(1)  #Error : programul se opreste aici, nu merge mai departe
 #=====================================================================================
 
 

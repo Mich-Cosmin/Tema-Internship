@@ -16,42 +16,41 @@ import pyautogui
 #===================================================================
                 # Record the screen video
 #==================================================================
-#This Python code is used to capture screenshots of your screen at regular intervals 
-#and save them as frames in a video file. It uses the pyautogui library to capture the screen, 
-#cv2 (OpenCV) to handle video encoding, and numpy to manipulate image data.
+#pyautogui->capture the screen, cv2 (OpenCV) to handle video encoding, and numpy to manipulate image data
 #"PyAutoGUI library" -> retrieves the dimensions (width and height) of the primary screen or monitor.
 
 def record_video():
     try:
-        #tuple(...): This part is used to convert the result of pyautogui.size() into a tuple. 
+        #capture screenshots of your screen at regular intervals and save them as frames in a video file
+        SCREEN_SIZE = tuple(pyautogui.size())
+        #tuple(...): convert the result of pyautogui.size() into a tuple. 
                 #The tuple() constructor takes an iterable (such as a list or tuple) and converts it  
                 #into a tuple data structure. In this case, it's converting the result into a tuple to 
                 #make it easier to work with.
         #After executing SCREEN_SIZE = tuple(pyautogui.size()), the SCREEN_SIZE variable will contain a 
         #tuple with the screen dimensions, like (width, height).
-        SCREEN_SIZE = tuple(pyautogui.size())
+        
     except Exception as e:
         print(f"Error getting screen size: {e}")
         l.logging.error(f"Error getting screen size: {e}")
         return
 
     try:
-        #is used to specify the codec (compression algorithm) to be used for encoding video when 
+        #This line is used to specify the codec (compression algorithm) to be used for encoding video when 
         #creating a VideoWriter object in OpenCV (cv2). 
         #cv2: This is the OpenCV library, commonly used for computer vision and image/video processing task it
         #VideoWriter_fourcc(...): This is a function provided by OpenCV for creating a VideoWriter object 
-                                  #with a specified codec. It takes a codec identifier as an argument.
+                                  #with a specified codec. 
         #"XVID":-> This is the codec identifier passed as a string argument to VideoWriter_fourcc(). 
                  #In this case, "XVID" represents the Xvid codec, which is a popular and widely supported  
-                 #codec for compressing video in the Xvid format.
-        #fourcc: -> This is a variable that stores the codec identifier. It is commonly used when initializing
-                 # a VideoWriter object to specify the codec to be used when writing video frames.                                   
+                 #codec for compressing video in the Xvid format.                                 
         
         #In this example, fourcc is used to specify the Xvid codec when creating the VideoWriter object (out). 
         #The VideoWriter object will use this codec to compress and write video frames to the output 
         #file in the AVI format. The codec chosen can affect the video file's size, quality, and 
         #compatibility with different media players.
-        fourcc = cv2.VideoWriter_fourcc(*"XVID")
+        fourcc = cv2.VideoWriter_fourcc(*"XVID")       #stores the codec identifier 
+
     except Exception as e:
         print(f"Error creating VideoWriter object: {e}")
         l.logging.error(f"Error creating VideoWriter object: {e}")
@@ -61,12 +60,10 @@ def record_video():
         # In the context of video processing, FPS refers to the number of individual frames (images) 
         #displayed or recorded per second.
         #The 12.0 is a floating-point number to specify the frame rate with a decimal point.
-        fps = 12.0
-        #The frame rate is crucial in video recording or playback because it determines how smoothly 
-        #the video appears. A higher frame rate, such as 30 FPS or 60 FPS, results in smoother motion but 
-        #may require more storage space and processing power. A lower frame rate, like 12 FPS, may appear
-        #less smooth but can be suitable for certain applications where lower resource usage is acceptable.
-
+        fps = 12.0          #The frame rate determines how smoothly the video appears.
+        #A higher frame rate, such as 30 or 60 FPS, results in smoother motion but may require more storage
+        #space and processing power. A lower frame rate, 12 FPS, may appear less smooth but
+        #can be suitable for certain applications where lower resource usage is acceptable.
         #In practice, you would use this fps variable when creating a VideoWriter object (for recording) 
         #or when specifying the frame rate for video playback to control the speed at which frames are 
         #displayed or recorded.
@@ -75,12 +72,9 @@ def record_video():
         l.logging.error(f"Error setting frames per second: {e}")
         return
 
-    try:
-        out = cv2.VideoWriter("integist_ecran_video.avi", fourcc, fps, SCREEN_SIZE)
-    except Exception as e:
-        print(f"Error creating VideoWriter instance: {e}")
-        l.logging.error(f"Error creating VideoWriter instance: {e}")
-        return
+    #numele fisierului in care este salvat
+    out = cv2.VideoWriter("integist_ecran_video.avi", fourcc, fps, SCREEN_SIZE)
+    
 
     print("Start recording screen...")
     l.logging.info('Start recording screen.')
@@ -92,10 +86,10 @@ def record_video():
             img = pyautogui.screenshot()
             #pyautogui: This is the PyAutoGUI library, which provides functions for automating tasks 
                         #related to mouse and keyboard interactions and screen capturing.
-            #screenshot(): This is a function provided by PyAutoGUI. When called without any arguments, 
-                            #it captures a screenshot of the entire screen and returns it as an image object.
-            #img: This is a variable that stores the captured screenshot as an image object. The variable 
-                    #name img is commonly used to represent an image.
+            #screenshot(): When called without any arguments, it captures a screenshot of the entire
+                        #screen and returns it as an image object.
+            #img: This is a variable that stores the captured screenshot as an image object. 
+
             #After executing img = pyautogui.screenshot(), the img variable contains the screenshot of 
             #the entire screen as an image. You can then manipulate, save, or process                                    
         except Exception as e:
@@ -109,10 +103,10 @@ def record_video():
             #image as a NumPy array, which can be helpful for various image processing tasks.
             frame = np.array(img)
             
-            #This line changes the color space of the image from BGR (Blue, Green, Red) to RGB (Red, Green, 
-            #Blue) using the OpenCV library (cv2). In the BGR color space, pixel values are stored in the 
-            #order Blue, Green, Red, while in the RGB color space, they are stored in the order Red, Green, 
-            #Blue. This conversion is often necessary when working with images in OpenCV because it uses 
+            #This line changes the color space of the image from BGR (Blue, Green, Red) to RGB using the
+            #OpenCV library (cv2). In the BGR color space, pixel values are stored in the order Blue,Green,Red
+            #while in the RGB color space, they are stored in the order Red, Green, Blue.
+            #This conversion is often necessary when working with images in OpenCV because it uses 
             #the RGB color space by default.
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
@@ -121,6 +115,7 @@ def record_video():
             #a VideoWriter object created earlier, and it specifies the output video file format and settings.
             #The frame is added to the video file, effectively creating a video sequence frame by frame.
             out.write(frame)
+
         except Exception as e:
             print(f"Error processing and writing frame: {e}")
             l.logging.error(f"Error processing and writing frame: {e}")
@@ -131,7 +126,7 @@ def record_video():
     l.logging.info('Video File saved to integist_ecran_video')
 
     try:
-        #This function call closes all open OpenCV windows that were created during the course of your 
+        #This function closes all open OpenCV windows that were created during the course of your 
         #script's execution. OpenCV allows you to display images in windows, and this function is used to 
         #close those windows when you no longer need them. It's a good practice to call this function at 
         #the end of your script to ensure that any open windows are closed.

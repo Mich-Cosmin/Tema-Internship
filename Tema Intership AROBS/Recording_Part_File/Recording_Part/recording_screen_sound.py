@@ -14,10 +14,10 @@ import wave
 
 def record_audio():
     l.logging.info(f"The microphone Device You chose is : {c.selected_device}")
-    CHUNK=1024
+    CHUNK=1024   #bucata
     CHANNELS=1
     FORMAT=pyaudio.paInt16
-    RATE=44100
+    RATE=48000               #RATE=44100          
     output_filename = "integist_ecran_audio.wav"  # Change this to the desired output filename
     
     #p = pyaudio.PyAudio()
@@ -33,9 +33,8 @@ def record_audio():
 
     try:
         #"p": - instance of the pyaudio.PyAudio
-        #opens an audio input stream(curent) for recording with the specified format, channel 
-        #configuration, sample rate, and input device. Once the stream is opened, you can use it to read 
-        #audio data from the selected input device during the recording process.
+        #opens an audio input stream (curent) for recording with the specified format,... .Once the stream is 
+        #opened, you can use it to read audio data from the selected input device during the recording process
         stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True,
             input_device_index=c.selected_device, frames_per_buffer=CHUNK)
     except Exception as e:
@@ -64,13 +63,12 @@ def record_audio():
         #frames: a Python list that serves as a container for storing audio data. It is typically 
                  #used to accumulate audio data in chunks as it is read from an audio stream.
         #append(data): This is a method call on the frames list. It adds the data variable (which contains 
-                #audio data read from an audio stream) to the end of the list. In other words, it appends 
+                #audio data read from an audio stream) to the "end of the list". In other words, it appends 
                 #the audio data to the list.
-        #In the context of audio recording, this line is often found inside a loop where audio data is 
-        #continuously read from the audio stream in chunks (typically specified by a buffer size) and 
-        #appended to the frames list. This is a common approach for recording audio because it allows you 
-        #to collect and concatenate audio data into a continuous stream, which can later be saved as an 
-        #audio file or processed as needed.
+        #In the context of audio recording, this line continuously read from the audio stream in chunks 
+        #(specified by a buffer size) and appended to the frames list. This is a common approach for
+        #recording audio because it allows you to collect and concatenate audio data into a continuous
+        #stream, which can later be saved as an audio file or processed as needed.
         frames.append(data)
 
     print("Finished recording audio.")
@@ -91,6 +89,7 @@ def record_audio():
         print(f"Error saving audio to {output_filename}: {e}")
         l.logging.error(f"Error saving audio to {output_filename}: {e}")
         # Handle the error appropriately, e.g., exit the program or log it
+        return
 
 
     

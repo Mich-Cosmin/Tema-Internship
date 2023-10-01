@@ -1,18 +1,27 @@
-2023-09-30 13:13:31,353 - DEBUG - Starting new HTTPS connection (1): google.com:443
-2023-09-30 13:13:31,613 - DEBUG - https://google.com:443 "GET / HTTP/1.1" 301 220
-2023-09-30 13:13:31,615 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
-2023-09-30 13:13:31,949 - DEBUG - https://www.google.com:443 "GET / HTTP/1.1" 200 None
-2023-09-30 13:13:32,156 - INFO - Application started.
-2023-09-30 13:13:32,157 - INFO - Opening the youtube page
-2023-09-30 13:13:32,159 - DEBUG - Starting new HTTPS connection (1): www.youtube.com:443
-2023-09-30 13:13:32,338 - DEBUG - https://www.youtube.com:443 "GET /results?q=https://www.youtube.com/watch?v=LHvYrn3FAgI HTTP/1.1" 200 None
-2023-09-30 13:13:33,247 - INFO - The page was opened with success
-2023-09-30 13:13:40,451 - INFO - Device 0: Microsoft Sound Mapper - Input
-2023-09-30 13:13:40,452 - INFO - Device 1: Microphone (Conexant SmartAudio
-2023-09-30 13:13:40,453 - INFO - The microphone Device You chose is : 1
-2023-09-30 13:13:40,468 - INFO - Start recording screen.
-2023-09-30 13:13:42,222 - INFO - Start Recording audio
-2023-09-30 13:14:07,375 - INFO - Finished recording screen.
-2023-09-30 13:14:07,379 - INFO - Video File saved to integist_ecran_video
-2023-09-30 13:14:12,296 - INFO - Finished recording audio.
-2023-09-30 13:14:12,299 - INFO - Audio saved to integist_ecran_audio.wav
+2023-10-01 13:41:40,309 - DEBUG - Starting new HTTPS connection (1): google.com:443
+2023-10-01 13:41:40,560 - DEBUG - https://google.com:443 "GET / HTTP/1.1" 301 220
+2023-10-01 13:41:40,576 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
+2023-10-01 13:41:40,860 - DEBUG - https://www.google.com:443 "GET / HTTP/1.1" 200 None
+2023-10-01 13:41:41,092 - INFO - Application started.
+2023-10-01 13:41:41,092 - INFO - 
+2023-10-01 13:41:41,092 - INFO - ========= Start Subrutina de deschidere pagina youtube =========
+2023-10-01 13:41:41,092 - INFO - Opening the youtube page
+2023-10-01 13:41:41,092 - DEBUG - Starting new HTTPS connection (1): www.youtube.com:443
+2023-10-01 13:41:41,309 - DEBUG - https://www.youtube.com:443 "GET /results?q=https://www.youtube.com/watch?v=LHvYrn3FAgI HTTP/1.1" 200 None
+2023-10-01 13:41:42,192 - INFO - The page was opened with success
+2023-10-01 13:41:49,265 - INFO - ========= Final Subrutina de deschidere pagina youtube =========
+2023-10-01 13:41:49,265 - INFO - 
+2023-10-01 13:41:49,265 - INFO - ========= Start Subrutina de numarare a numarului de microfoane =========
+2023-10-01 13:41:49,792 - INFO -     Device 0: Microsoft Sound Mapper - Input
+2023-10-01 13:41:49,793 - INFO -     Device 1: Microphone (Conexant SmartAudio
+2023-10-01 13:41:49,794 - INFO - ========= Final Subrutina de numarare a numarului de microfoane =========
+2023-10-01 13:41:49,794 - INFO - 
+2023-10-01 13:41:49,795 - INFO - ========= Start Thread audio + video =========
+2023-10-01 13:41:49,803 - INFO - The microphone Device You chose is : 0
+2023-10-01 13:41:49,835 - INFO - Start recording screen.
+2023-10-01 13:41:51,062 - INFO - Start Recording audio
+2023-10-01 13:42:21,428 - INFO - Finished recording screen.
+2023-10-01 13:42:21,429 - INFO - Video File saved to integist_ecran_video
+2023-10-01 13:42:21,445 - INFO - Finished recording audio.
+2023-10-01 13:42:21,451 - INFO - Audio saved to integist_ecran_audio.wav
+2023-10-01 13:42:21,455 - INFO - ========= Final Thread audio + video =========
